@@ -5,7 +5,7 @@ const session = require('express-session')
 
 const app = express()
 
-mongoose.connect('mongodb+srv://admin-ridwan:ridwan12345@cluster0.a51mg.mongodb.net/ShopManagement', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://admin-ridwan:ridwan12345@cluster0.a51mg.mongodb.net/ShopManagement", {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', ()=>console.log('Connection to DB established'))
@@ -26,6 +26,11 @@ app.set('view engine', 'ejs')
 //route prefix
 app.use("", require("./routes/routes"))
 
+let port = process.env.PORT;
+if(port == null || port == ""){
+    port = 3000;
+}
+
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`Server started`);
+    console.log(`Server started successfully on port ${port}`);
 })
