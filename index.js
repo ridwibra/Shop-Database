@@ -5,7 +5,7 @@ const session = require('express-session')
 
 const app = express()
 
-mongoose.connect("mongodb+srv://admin-ridwan:ridwan12345@cluster0.a51mg.mongodb.net/ShopManagement", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', ()=>console.log('Connection to DB established'))
